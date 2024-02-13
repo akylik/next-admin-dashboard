@@ -1,6 +1,12 @@
+import styles from "../../ui/dashboard/users/users.module.css";
+
+
 const UsersPage = () => {
   return (
-    <div>UsersPage</div>
+    <div className={styles.container}>
+      <div className={styles.top}></div>
+      <table className={styles.table}></table>
+    </div>
   )
 }
 
