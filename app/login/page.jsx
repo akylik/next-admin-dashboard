@@ -1,6 +1,12 @@
+import LoginForm from "../ui/login/loginForm/loginForm";
+import styles from "@/app/ui/login/login.module.css";
+
+
 const LoginPage = () => {
   return (
-    <div>LoginPage</div>
+    <div className={styles.container}>
+      <LoginForm/>
+    </div>
   )
 }
 

@@ -1,7 +1,7 @@
 "use client"
 
-import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import styles from "./chart.module.css";
+import styles from './chart.module.css'
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
   {
@@ -44,7 +44,7 @@ const data = [
 const Chart = () => {
   return (
     <div className={styles.container}>
-      <h2>Weekly Recap</h2>
+      <h2 className={styles.title}>Weekly Recap</h2>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart
           width={500}
@@ -66,7 +66,7 @@ const Chart = () => {
         </LineChart>
       </ResponsiveContainer>
     </div>
-  );
-};
+  )
+}
 
-export default Chart;
+export default Chart
