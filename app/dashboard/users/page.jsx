@@ -8,7 +8,6 @@ import { fetchUsers } from "@/app/lib/data";
 const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-
   const { users, count } = await fetchUsers(q, page);
 
   return (
