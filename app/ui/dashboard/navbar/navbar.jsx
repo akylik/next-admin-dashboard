@@ -1,12 +1,12 @@
 "use client";
 import { usePathname } from "next/navigation";
+import styles from "./navbar.module.css";
 import {
   MdNotifications,
   MdOutlineChat,
   MdPublic,
   MdSearch,
 } from "react-icons/md";
-import styles from "./navbar.module.css";
 
 const Navbar = () => {
   const pathname = usePathname();
