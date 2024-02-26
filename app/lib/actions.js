@@ -6,6 +6,46 @@ import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
 import { signIn } from "../auth";
+import { isRedirectError } from "next/dist/client/components/redirect";
+
+export const createUser = async (prevState, formData) => {
+  // const { username, email, password } =
+  //   Object.fromEntries(formData);
+
+  const formDataEntries = Object.entries(formData);
+  const formDataObject = Object.fromEntries(formDataEntries);
+  const { username, email, password } = formDataObject;
+
+    if (!username || !email || !password) {
+      return "Please fill in all fields!";
+    }
+
+  try {
+    connectToDB();
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+
+    const credentials = { username, password };
+    await signIn("credentials", { ...credentials });
+  } catch (err) {
+
+    if (isRedirectError(err)) {
+      console.error(err);
+      redirect("/dashboard");
+    }
+    // throw new Error("Failed to create user!");
+    return "Failed to create user!"
+  }
+};
 
 export const addUser = async (formData) => {
   const { username, email, password, phone, address, isAdmin, isActive } =
